@@ -1,0 +1,190 @@
+<div class="container">
+
+	<!-- Header begins ========================================================================== -->
+	<header class="sixteen columns">
+		<div id="logo">
+			<h1>votepeople <em>[:SNU]</em></h1>
+		</div>
+		<nav>
+			<ul>
+				<!--<li><button id="workPage">투표하기</button></li>-->
+			</ul>
+		</nav>
+		<hr />
+	</header>
+	<!-- Header ends ============================================================================ -->
+	
+	<!-- Work page begins ======================================================================= -->
+	<div id="work">
+	
+		<div id="overview" class="sixteen columns" style="text-align:center;">
+      <h5>투표하실 수 있는 시간은 <%=@vote.open_time%>시부터 <%=@vote.close_time%>시까지 입니다. <%if @vote.vote_able_time%>현재 투표소가 열려있습니다.<%else%>현재 투표소가 닫혀있습니다.<%end%></h5>
+      <h5>
+				<% pvt = @vote.votetimeout%>
+        <% ratio_result = @vote.vote_rate%>
+					이 투표는 <%=pvt[0]%>일<%=pvt[1]%>시간<%=pvt[2]%>분 후 마감됩니다. /  현재 재학생 <%=ratio_result[0]%>명 중 <%= ratio_result[1] %>명 투표, 휴학생 <%=ratio_result[2]%>명 투표, 투표율 <%=ratio_result[3]%>%
+      </h5>
+			<h4>
+				<% if @electorate == nil %>
+					선거인명부에 없는 학번입니다
+				<%elsif @electorate.voted %>
+					이미 투표하신 사안입니다
+				<%else%>
+					<%=session[:student_number]%>님, 선거인명부에 있습니다. 투표해주세요!
+				<%end%>
+			</h4>
+			<hr />
+      <h2><%=@vote.content%></h2><br>
+      <div style="text-align:left;">
+        <h4><%=simple_format(@vote.detail)%></h4>
+      </div>
+
+        <br>
+			<hr />
+		</div>
+		
+		<div class="eight columns" id="col1">
+      <% op_number = 1%>
+		  <% @vote.options.each do |op| %><!--옵션별 카드 생성-->
+
+			<!-- Project begins ================================================================= -->
+			<div class="project">
+      
+      <div class="projectTitle"> 
+        <h3>0<%= op_number %> /<%= op.name %></h3>
+      </div>
+        <%op_number = op_number + 1%>
+				<div class="projectThumbnail">
+					<svg class="thumbnailMask"></svg>
+
+					<div class="projectThumbnailHover">
+							<h4><%= op.name %></h4>
+						<!--	<h5>득표수는 투표 마감 후 공개됩니다. </h5>-->
+					</div>
+					
+					<%if op.pictures.size != 0%>
+						<img src="/images/<%=op.pictures.first.saved_name%>" alt="<%= op.name %>" class="thumbnailImage" />
+          <% else %>
+            <%= image_tag 'about.jpg', :alt => "사진을 등록해주세요." %>
+					<%end%>  
+				</div>
+				
+
+				<div class="projectInfo">
+          <br>
+          <h5>
+             <strong>정후보 </strong><%= op.person_first %>&nbsp;&nbsp;-&nbsp;&nbsp;<strong>부후보 </strong><%= op.person_second %>
+          </h5>
+          <% op.pictures.each do |pic|%>
+          <img src="/images/<%=pic.saved_name%>" class="thumbnailImage"/>
+          <%end%>
+					<h2><%= op.name %></h2>
+
+
+					<ul>
+						<li><strong>징계사항</strong><br><blockquote><%= op.public_content %></blockquote></li>
+						<li><strong>공약</strong><br><blockquote><%= op.self_content %></blockquote></li>
+
+            <% if @vote.votetimeout != [0, 0, 0] %>
+              
+              <script type="text/javascript">
+                function voteOption(opid, name){
+                  $('#hidden_option').attr("value", opid);
+                  $('#aboutPage').trigger('click');
+                  $('#option_name').html(name + '에 투표하시겠습니까?');
+                  return false;
+                }
+              </script>
+                <button onclick="voteOption('<%=op.id%>', '<%=op.name%>');">
+                  <%= op.name %>에 투표하겠습니다
+                </button>
+            <% else %>
+            <% end %>
+
+					</ul>
+				</div>
+				
+			</div>
+			<!-- Project ends =================================================================== -->
+
+			<% end %><!--옵션별 카드 생성 종료-->
+				
+		</div><!-- col1 -->
+		
+		<!-- Even numbered projects are dynamically moved into this second column via JS -->
+		<div class="eight columns" id="col2">
+		</div>
+	
+	</div>
+	<!-- Work page ends ========================================================================= -->
+	
+	<!-- About page begins ====================================================================== -->
+	<div id="about">
+		
+		<!-- Column 1 begins ==================================================================== -->
+		<div class="sixteen columns">
+      <div id="overview" class="sixteen columns" style="text-align:center;">
+        <h5>
+					이 투표는 <%=pvt[0]%>일<%=pvt[1]%>시간<%=pvt[2]%>분 후 마감됩니다.  /  현재 재학생 <%=ratio_result[0]%>명 중 <%= ratio_result[1] %>명 투표, 휴학생 <%=ratio_result[2]%>명 투표, 투표율 <%=ratio_result[3]%>%
+        </h5>
+  
+        <h3><%=@vote.content%></h3><br>
+
+        <hr />
+			</div><!-- overview -->
+
+      <div class="ten columns offset-by-three" style="text-align: center;">
+        <%if @vote.vote_able_time%>
+          <% if @vote.electorates.where(:student_number => session[:student_number]).first !=nil%>
+            <%if @vote.electorates.where(:student_number => session[:student_number]).first.voted == true%>
+              <h4>이미 투표하신 사안입니다</h4>		
+              <button id="workPage">
+                돌아가기
+              </button>
+            <%else%>
+              <h4 id="option_name"> 투표하시겠습니까?</h4>
+              <h5>본 투표는 중복 또는 번복이 불가하므로 신중하게 결정해주세요</h5>
+              <form id ="yes_form"<%if Validation.where(:student_number => session[:student_number]).count == 0%>action="/vote/phone"<%else%>action="/vote/code_input"<%end%> method="post">
+                            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                <input type="hidden" id ="hidden_option" name="id">
+                <input type="submit" value="예, 투표하겠습니다">
+              </form>
+              <br><br>
+              <button id="workPage">
+                아니오, 다시 결정하겠습니다
+              </button>
+            <%end%>
+          <%else%>
+            
+            <h5>선거인명부에 학번이 없어 투표권이 없습니다.</h5>
+              <br><br>
+              <button id="workPage">
+                돌아가기
+              </button>
+          <%end%>
+          <%else%>
+            <h5>투표소가 닫혀있습니다. 내일도 투표일이라면 <%=@vote.open_time%>시에 다시 열리게 됩니다.</h5>
+              <button id="workPage">
+                돌아가기
+              </button>
+          <%end%>
+
+      </div>
+
+		</div><!-- Column 1 ends ====================================================================== -->
+			
+	</div><!-- About page ends ======================================================================== -->
+	
+	<!-- Footer begins ========================================================================== -->
+	<footer class="sixteen columns">
+		<hr />
+		<ul id="footerLinks">
+			<li>&copy; 2013 votepeople All rights reserved.</li>
+			<li><a href="https://vote.snu.ac.kr">vote.snu.ac.kr</a></li>
+			<li><a href="3votepeople@gmail.com" target="_blank">3votepeople@gmail.com</a></li>
+		</ul>
+	</footer>
+	<!-- Footer ends ============================================================================ -->
+		
+</div><!-- container -->
+<button id="aboutPage" style="display:none;">invisiblebutton</button>

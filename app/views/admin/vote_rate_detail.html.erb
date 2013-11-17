@@ -1,0 +1,54 @@
+<div class="container">
+
+	<!-- Header begins ========================================================================== -->
+	<header class="sixteen columns">
+		<div id="logo">
+			<h1><strong>vote</strong>people<em>.admin [:SNU]</em></h1>
+			<!--
+			<img src="images/logo.png" width="275" height="35" alt="Logo" />
+			-->
+		</div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/admin/view/<%=@vote.id%>"><button>돌아가기</button></a>
+        </li>
+      </ul>
+    </nav>
+		<hr />
+	</header>
+	<!-- Header ends ============================================================================ -->
+	
+	<!-- Work page begins ======================================================================= -->
+	<div id="work" style="text-align:center;">
+
+        <div class="ten columns offset-by-three">
+
+          <% @colleges.each do |college|%>
+          <br><br>
+
+          <h4><%=college%> 투표율</h4>
+          <h4><%=@colleges_hash[college].division_rate%>%</h4>
+          <h4><a href="/admin/voted_list/<%=@vote.id%>?division=<%=college%>&voted=true">투표자 명단</a></h4>
+          <%end%>
+
+            <br><br>
+          </div>
+	
+	</div>
+	<!-- Work page ends ========================================================================= -->
+	
+	<!-- About page begins ====================================================================== -->
+	
+	<!-- Footer begins ========================================================================== -->
+	<footer class="sixteen columns">
+		<hr />
+		<ul id="footerLinks">
+			<li>&copy; 2013 votepeople All rights reserved.</li>
+			<li><a href="mailto:3votepeople@gmail.com">3votepeople@gmail.com</a></li>
+			<li><a href="#" target="_blank">vote.snu.ac.kr</a></li>
+		</ul>
+	</footer>
+	<!-- Footer ends ============================================================================ -->
+		
+</div><!-- container -->

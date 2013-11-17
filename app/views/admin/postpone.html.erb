@@ -1,0 +1,81 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+    						<h4><%=@vote.content%> 연장하기</h4>
+    						<div class="cbp-ntcontent">
+    							<p>
+                    투표를 연장, 즉 마감 날짜와 시간을 변경하실 수 있습니다.<br>
+                    <strong>
+                     선관위 회의를 통해 결정된 대로 변경하시기 바랍니다. 이 시간이 지나면 다시 연장투표를 추가로 하실 수도 있습니다. 날짜와 시간을 선택하신 후 연장하기 버튼을 누르면 바로 변경됩니다.
+                    </strong>
+
+                  </p>
+                  <br>
+                  <form method="post" action="/admin/postpone_process">
+                    <input type="hidden" name="id" value="<%=@vote.id%>">
+                    <input type = "date" value="<%=Time.now.to_s[0..9]%>" name = "due_date">
+                    <select name = "noon" style = "width:70px;">
+                      <option value = "before">오전</option>
+                      <option value = "after">오후</option>
+                    </select>
+
+                    <select name = "clock" style = "width:70px;">
+                      <% 0.upto(11) do |x|%>
+                        <option value = "<% if x < 10 %>0<%=x%><%else%><%=x%><%end%>"><%=x%>시</option>
+                      <%end%>
+                    </select>
+             
+                    <select name = "minute" style = "width:70px;">
+                      <% 0.upto(59) do |y|%>
+                        <option value = "<%if y < 10 %>0<%=y%><%else%><%=y%><%end%>"><%=y%>분</option>
+                      <%end%>
+                    </select><br>
+                    <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    <input type="submit" value="연장하기">
+                  </form>
+
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>
+
+
+

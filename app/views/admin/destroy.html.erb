@@ -1,0 +1,73 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+    						<h4>폐기하기</h4>
+    						<div class="cbp-ntcontent">
+    							<p>
+                    메일 인증을 통해 하단 이메일의 유저 모두 개별 고유암호를 부여받은 후, 
+                    <br>
+                    모든 암호를 올바르게 입력해야만 폐기가 가능합니다.
+                    <br>
+                    <strong>
+                     즉, 모든 선본이 동의하고, 입회한 상황에서만 폐기가 가능합니다.
+                    </strong>
+                    <br>
+
+                    <% @vote.attendants.each do |attendant|%>
+                      <%=attendant.email_address%><br>
+                    <%end%>
+                  </p>
+                  <br>
+
+                  <form method="post" action="/admin/mail_validation">
+                    <input type="hidden" name="open_boolean" value="false">
+                    <input type="hidden" name="id" value="<%=@vote.id%>">
+                    <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    <input type="submit" value="모두 입회하였습니다.">
+                  </form>
+
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>
+
+
+

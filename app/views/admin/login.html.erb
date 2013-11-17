@@ -1,0 +1,15 @@
+<div class="full flex vcen hcen bc_darkg2">
+  <div class="flexed">
+
+    <div class="admin_form">
+
+    <%= form_for :admin, :url => { :action => 'login_process'}, :html => {:style => 'text-align:center'} do |f| %>
+      <div class="vp_logo c_lightg">
+        <p><strong>vote</strong>people<span class="admin">.admin</span> <em>[:SNU]</em></p>
+      </div>
+      <%= f.text_field :id, :placeholder => "admin ID", :title => "admin ID", :class => 'placeholder' %>
+      <%= f.password_field :password, :placeholder => "admin PW", :title => "admin PW", :class => 'placeholder' %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

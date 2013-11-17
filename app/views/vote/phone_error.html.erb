@@ -1,0 +1,58 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+    						<h4 >인증에 실패했습니다.</h4>
+    						<div class="cbp-ntcontent">
+    							<p>인증번호가 틀렸거나, 3분이 지난 후에 입력하셨습니다. 다시 시도해주세요.</p>    	
+                  <a href="/vote/index"><button>돌아가기</button></a>                 
+
+                  </div>
+
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+		/*
+		- how to call the plugin:
+		$( selector ).cbpNTAccordion( [options] );
+		- destroy:
+		$( selector ).cbpNTAccordion( 'destroy' );
+		*/
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>

@@ -1,0 +1,91 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+      <h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+    <nav>
+    <p>
+      <strong><%=session[:student_number]%></strong>으로 로그인 되었습니다. 10분 동안 페이지 이동이 없을 경우 자동으로 로그아웃 됩니다.
+    <br>
+      투표시 본인인증 문자를 받으실 휴대전화번호는 <strong><%=session[:phone_number]%></strong>입니다.
+    <br>
+      본인이 현재 사용하는 전화번호가 아닌 경우, 먼저 <a href="/vote/logout">로그아웃</a>을 하신 후,
+      <a href="http://my.snu.ac.kr/mysnu">
+        mySNU
+      </a>
+      에서 전화번호를 변경해 주세요. 변경 후 <a href="http://my.snu.ac.kr/mysnu">mySNU</a>에서 로그아웃, 로그인을 하셔야 서버에 반영됩니다.
+      <br>
+      <a href="/vote/help">혹시 변경방법을 모르신다면 클릭해주세요.</a>
+      <br>
+      <br>
+      <a href="/electorate/student_card">휴대폰 인증이 불가능하셔서 학생증 인증으로 대체하시려면 클릭해주세요.
+      </a>
+    </p>
+      <ul>
+        <li><a href="/vote/logout"><button>로그아웃</button></a></li>
+      </ul>
+    </nav>
+    <hr />
+  </header>
+  
+  <div id="overview" class="sixteen columns" style="text-align:center;">
+  </div>
+
+  <% @votes.each do |vote| %>
+  	<% if vote.votestart == [0, 0, 0] && vote.electorates.where(:student_number => session[:student_number]).count != 0%>
+      <a href="/vote/view/<%= vote.id %>" style="text-decoration:none">   
+       	<div class="sixteen columns">
+	        <div class="project">    
+                <div class="votelist">
+                  <%@pvt = vote.votetimeout%>
+                  <% if @pvt != [0, 0, 0] %>
+	        	
+                    <%if vote.picture_name != nil%>
+                       <img src="/images/<%=vote.picture_name%>" alt="<%= vote.content %>" style="z-index: 1;"/>	<!--class="thumbnailImage" 지움-->
+                    <% else %>
+                      <%= image_tag 'about.jpg', :style => "z-index :1;" %>
+                    <% end %>
+                        
+                                      
+                    <div class="votelist-status test2"></div>
+                    <div class="votelist-label">
+          <!-- 		        		<span class="icon check"></span> -->
+                      <h3><%= vote.content %></h3>
+                      <h5><%= Admin.find(vote.admin_id).admin_realname %></h5><br>
+                        
+                      <div class="whitebar"></div>
+                      <br>
+                      <h5>
+                            마감까지 <%if @pvt[0]!=0%><%=@pvt[0]%>일<%end%> <%if @pvt[1]!=0%><%=@pvt[1]%>시간<%end%> <%if @pvt[2]!=0%><%=@pvt[2]%>분 <%end%>남았습니다
+                          </h5>
+                    </div><!-- votelist-label -->
+                    
+                  <% else %>
+			    	
+                    <%if vote.picture_name != nil%>
+                           <img src="/images/<%=vote.picture_name%>" alt="<%= vote.content %>" class="thumbnailImage grayscale" style="z-index: 1;"/>	
+                    <% else %>
+                      <%= image_tag 'about.jpg', :style => "z-index :1;" %>
+                    <% end %>
+		        		
+		        			        		
+                  <div class="votelist-status done"></div>
+                    <div class="votelist-label">
+	<!-- 		        		<span class="icon check"></span> -->
+                      <h3><%= vote.content %></h3>
+                      <h5><%= vote.admin_id %></h5><br>
+			        	
+                      <div class="whitebar">
+                      </div>
+                      <br>
+                      <h5>마감되었습니다</h5>
+                    </div><!-- votelist-label -->
+			    	
+                  <% end %>
+	        	</div><!-- votelist-->
+	        </div><!-- project --> 
+		 </div>
+       </a>
+      <% end %>
+    <% end %>
+</div><!-- container -->

@@ -1,0 +1,100 @@
+<div class="container">
+
+	<!-- Header begins ========================================================================== -->
+	<header class="sixteen columns">
+		<div id="logo">
+			<h1><strong>vote</strong>people<em>.admin [:SNU]</em></h1>
+			<!--
+			<img src="images/logo.png" width="275" height="35" alt="Logo" />
+			-->
+		</div>
+		<hr />
+	</header>
+	<!-- Header ends ============================================================================ -->
+	
+	<!-- Work page begins ======================================================================= -->
+	<div id="work">
+	
+		<div id="overview" class="sixteen columns" style="text-align:center;">
+      <table>
+        <tr>
+          <th>
+            학번
+          </th>
+          <th>
+            인증번호
+          </th>
+          <th>
+            인증번호 발송여부
+          </th>
+          <th>
+            발송확인
+          </th>
+          <th>
+            승인 취소
+          </th>
+        </tr>
+
+        <%if session[:admin_id] == 1%>
+          <% Validation.all.each do |validation|%>
+            <tr>
+              <td>
+                [<%=validation.student_number%>]
+              </td>
+              <td>
+                [<%=validation.secure_token%>]
+              </td>
+              <td>
+                <%if validation.mail_sent%>
+                O
+                <%else%>
+                X
+                <%end%>
+              </td>
+              <td>
+                <form method="post" action="/admin/student_card_mail_send">
+                      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                
+                  <a href="javascript:;"onclick="parentNode.submit();">발송하였으면 클릭</a>
+                  <input type="hidden" name="id" value="<%=validation.id%>">
+
+                </form>
+              </td>
+              <td>
+                <form method="post" action="/admin/student_card_cancel">
+                      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                
+                  <a href="javascript:;"onclick="parentNode.submit();">취소하기</a>
+                  <input type="hidden" name="id" value="<%=validation.id%>">
+
+                </form>
+              </td>
+            </tr>
+          <%end%>
+        <%end%>
+      </table>
+
+		</div>
+		
+		
+		<!-- Even numbered projects are dynamically moved into this second column via JS -->
+		<div class="eight columns" id="col2">
+		</div>
+	
+	</div>
+	<!-- Work page ends ========================================================================= -->
+	
+	<!-- About page begins ====================================================================== -->
+	
+	<!-- Footer begins ========================================================================== -->
+	<footer class="sixteen columns">
+		<hr />
+		<ul id="footerLinks">
+			<li>&copy; 2013 votepeople All rights reserved.</li>
+			<li><a href="mailto:3votepeople@gmail.com">3votepeople@gmail.com</a></li>
+			<li><a href="#" target="_blank">vote.snu.ac.kr</a></li>
+		</ul>
+	</footer>
+	<!-- Footer ends ============================================================================ -->
+		
+</div><!-- container -->

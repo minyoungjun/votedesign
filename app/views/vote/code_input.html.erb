@@ -1,0 +1,101 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+                <%if @validated%>
+    						<h4 >인증번호 입력</h4>
+    						<div class="cbp-ntcontent">
+    							<p><strong><%=@option.name%></strong>에 투표를 하시기 위한 마지막 절차는 선관위에서 발급받은 인증번호 입력입니다. <br><br>mySNU 이메일로 전송된 인증번호를 확인해주세요. <br><br>메일이 오지 않은 경우 선거관리위원회(010-4775-9609 오천석)로 연락주시기 바랍니다.</p>
+
+                
+                    
+                  <%#<script>
+                    function resendMessage(){
+
+                      $('#valid_box').attr("style","display:block");
+		$.ajaxSetup({
+		  beforeSend: function(xhr) {
+		    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+		  }
+		}); 
+
+                        $.ajax({
+                          url: '/vote/send_validation_code' ,
+                          dataType: "json" ,
+                          success: function(data) {
+                            /*ajax*/
+                            alert("인증번호를 재전송하였습니다.");
+                            Example2.resetCountdown();
+                            Example2.Timer.toggle();
+
+                            return false;  
+
+                          }
+                        });
+                      return false;
+                    }
+
+                  </script>%>
+
+                  <div id="valid_box">
+
+                    <form action="/vote/done" method="POST">
+                      <input type="hidden" name="id" value="<%=params[:id]%>">
+                      인증번호: <input type="text" id="validation_code" name="validation_code">
+                      <input type="submit" value="인증번호 확인" id="valid_button">
+                      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    </form>
+                  </div>
+
+                <%else%>
+                  <h4>선관위에서 학생증을 확인하기 전입니다.</h4>
+                  <a href="/vote/view/<%=@option.vote_id%>">뒤로가기</a>
+
+                <%end%>
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+		/*
+		- how to call the plugin:
+		$( selector ).cbpNTAccordion( [options] );
+		- destroy:
+		$( selector ).cbpNTAccordion( 'destroy' );
+		*/
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>

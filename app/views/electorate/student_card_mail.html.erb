@@ -1,0 +1,63 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+    						<h4>선관위 메일주소: snuvote@gmail.com</h4>
+    						<div class="cbp-ntcontent">
+                  <%if !@sent%>
+                    <p>위의 메일주소로 학생증 앞면 사진을 찍어서 보내주시면 선관위에서 확인 후 답장으로 인증번호를 보내드리겠습니다. 메일 발신은 마이스누에서 하시는 것을 권장합니다. 다른 메일 서비스에서 온 메일은 읽지 않을 수 있습니다.</p>
+
+                  <%else%>
+                  <p>이미 신청하셨습니다.</p>
+                  <%end%>
+                  <div>
+                  <a href="/vote/index"><button>돌아가기</button></a> 
+                  </div>
+
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+		/*
+		- how to call the plugin:
+		$( selector ).cbpNTAccordion( [options] );
+		- destroy:
+		$( selector ).cbpNTAccordion( 'destroy' );
+		*/
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>

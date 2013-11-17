@@ -1,0 +1,122 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+    						<h4 >휴대폰 번호 인증</h4>
+    						<div class="cbp-ntcontent">
+    							<p><strong><%=@option.name%></strong>에 투표를 하시기 위한 마지막 절차는 mySNU에서 가져온 휴대전화번호 인증입니다. <br><br><strong><%= @phone_number%></strong>로 전송된 인증번호를 확인해주세요. <br><br>본인이 현재 사용하고 있는 휴대전화번호와 다른 경우 이 페이지에서 <a href="/vote/logout">로그아웃</a>을 하시고, <a href="http://my.snu.ac.kr">마이스누</a>에 접속하셔서 본인이 사용하는 휴대폰 번호로 '개인정보수정'을 해주신 후 다시 투표하시기를 바랍니다.</p>    	
+                  
+                  <h3><%= @phone_number %>로 인증번호가 전송되었습니다.</h3>
+                    
+                  <%#<script>
+                    function resendMessage(){
+
+                      $('#valid_box').attr("style","display:block");
+		$.ajaxSetup({
+		  beforeSend: function(xhr) {
+		    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+		  }
+		}); 
+
+                        $.ajax({
+                          url: '/vote/send_validation_code' ,
+                          dataType: "json" ,
+                          success: function(data) {
+                            /*ajax*/
+                            alert("인증번호를 재전송하였습니다.");
+                            Example2.resetCountdown();
+                            Example2.Timer.toggle();
+
+                            return false;  
+
+                          }
+                        });
+                      return false;
+                    }
+
+                  </script>%>
+
+              <form id ="yes_form" action="/vote/phone" method="post">
+                <input type="hidden" value = "<%= form_authenticity_token() %>" name="authenticity_token"/>
+                <input type="hidden" name="id" value="<%=@option.id%>">
+                <input type="submit" value="인증번호 재전송">
+              </form>
+
+                  <div id="valid_box">
+                    <form>
+                    <p>3분 (180초) 안에 인증번호를 입력해주세요.</p>
+                    <script>
+                      setInterval('sCount();',1000);
+                      function sCount(){
+                        var last_time = parseInt(document.getElementById('countSecond').innerHTML)
+                          if (last_time > 0){
+                            $('#countSecond').html(String(last_time - 1));
+                          }
+                          else{
+                            
+                            $('#valid_box').attr("style","display:none");
+
+                          }
+                          
+                      }
+
+                    </script>
+                    <h3>남은 시간: <span id ="countSecond">180</span>초</h3>
+                        <input type="text" value="180"  style="display:none;">
+                    </form>
+
+                    <form action="/vote/done" id="example2form" method="POST">
+                      <input type="hidden" name="id" value="<%=params[:id]%>">
+                      인증번호: <input type="text" id="validation_code" name="validation_code">
+                      <input type="submit" value="인증번호 확인" id="valid_button">
+                      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    </form>
+                  </div>
+
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+		/*
+		- how to call the plugin:
+		$( selector ).cbpNTAccordion( [options] );
+		- destroy:
+		$( selector ).cbpNTAccordion( 'destroy' );
+		*/
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>

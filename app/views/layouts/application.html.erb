@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html>
+<head>
+<meta charset="utf-8">
+<title>VOTEPEOPLE [:SNU]</title>
+<%#= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => false %>
+<%#= javascript_include_tag "application", "data-turbolinks-track" => false %>
+<%= stylesheet_link_tag    "application", media: "all" %>
+<%= javascript_include_tag "application" %>
+
+<%= csrf_meta_tags %>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<meta property="og:url" content="https://vote.snu.ac.kr" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="VOTEPEOPLE[:SNU]" />
+<meta property="og:description" content="서울대학교 전자투표 서비스 VOTEPEOPLE[:SNU]" />
+<meta property="og:image" content="http://vote.snu.ac.kr/metaimage.png" />
+
+</head>
+<body>
+<script type="text/javascript">
+  document.write("<div id='sitePreloader'><div id='preloaderImage'><img src='/site_preloader.gif' alt='Preloader' /></div></div>");
+</script>
+
+<%= yield %>
+
+</body>
+</html>

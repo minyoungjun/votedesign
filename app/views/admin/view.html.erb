@@ -1,0 +1,282 @@
+<div class="container">
+
+	<!-- Header begins ========================================================================== -->
+	<header class="sixteen columns">
+		<div id="logo">
+			<h1><strong>vote</strong>people<em>.admin [:SNU]</em></h1>
+			<!--
+			<img src="images/logo.png" width="275" height="35" alt="Logo" />
+			-->
+		</div>
+		<nav>
+			<ul>
+				<li><button id="workPage">명부 관리</button></li>
+			  <li><button id="aboutPage">사안 설정/개표/폐기/연장</button></li>
+			</ul>
+		</nav>
+		<hr />
+	</header>
+	<!-- Header ends ============================================================================ -->
+	
+	<!-- Work page begins ======================================================================= -->
+	<div id="work" style="text-align:center;">
+        <form action="/admin/vote_rate_detail" method="post">
+          <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token">
+          <input type="hidden" value="<%=@vote.id%>" name="id">
+          <a href="javascript:;" onclick="parentNode.submit();">단대별 투표율/투표자 명단</a><br><br><br>
+        </form>
+      <% pvt = @vote.votetimeout %>
+      <% ratio_result = @vote.vote_rate%>
+      <% if ratio_result[0] != 0 %>
+
+        <div class="ten columns offset-by-three">
+          <table border="1">
+            <h5>
+              <tr>
+                <th>소속</th>
+                <th>전공</th>
+                <th>이름</th>
+                <th>학번</th>
+                <th>재학/휴학</th>
+                <th>투표여부</th>
+              </tr>
+
+              <% @paginated_electorates.each do |x| %>
+                <tr>
+                  <td><%= x.division %></td>
+                  <td><%= x.major %></td>
+                  <td><%= x.realname %></td>
+                  <td><%= x.student_number %></td>
+                  <td>
+                    <%if x.absent%>
+                      휴학
+                    <%else%>
+                      재학
+                    <%end%>
+                  </td>
+                  <td>
+                    <%if x.voted %>
+                      O
+                    <%else%>
+                      X
+                    <%end%>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+            <br><br>
+            <h5><%= will_paginate @paginated_electorates %></h5>
+          </div>
+        <% else %>
+          <div id="overview" class="sixteen columns" style="text-align:center;">
+            <h3>+</h3>
+            <h4>선거인명부를 등록해주세요</h4>
+          </div>
+        <% end %>
+        <form enctype="multipart/form-data" method="post" action="/admin/upload_electorate_list">
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <input type="hidden" value="<%=@vote.id%>" name="id">
+          <input type="file" name="file">
+          <input type="submit" value="명부 전송">
+        </form>
+
+	
+	</div>
+	<!-- Work page ends ========================================================================= -->
+	
+	<!-- About page begins ====================================================================== -->
+	<div id="about">
+		
+		<div id="overview" class="sixteen columns" style="text-align:center;">
+      <h5>
+        <% if pvt != [0, 0, 0] %>
+					이 투표는 <%=pvt[0]%>일<%=pvt[1]%>시간<%=pvt[2]%>분 후 마감됩니다.  /  현재 재학생 <%=ratio_result[0]%>명 중 <%= ratio_result[1] %>명 투표, 휴학생 <%=ratio_result[2]%>명 투표, 투표율 <%=ratio_result[3]%>%
+
+				<%else%>
+          투표율 <%=ratio_result[3]%>%로 마감된 투표입니다
+          <form method="post" action="/admin/open">
+            <input type="hidden" name="open_boolean" value="true">
+            <input type="hidden" name="id" value="<%=@vote.id%>">
+            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+            <input type="submit" value="개표하기">
+          </form>
+          <form method="post" action="/admin/destroy">
+            <input type="hidden" name="open_boolean" value="false">
+            <input type="hidden" name="id" value="<%=@vote.id%>">
+            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+            <input type="submit" value="폐기하기">
+          </form>
+          <form method="post" action="/admin/postpone">
+            <input type="hidden" name="id" value="<%=@vote.id%>">
+            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token">
+            <input type="submit" value="연장하기">
+          </form>
+				<%end%>
+      </h5>
+  
+      <h3><%=@vote.content%></h3>
+      <form method="post" action="/admin/change_able_time">
+        <select name ="open_time" style="width:70px;">
+          <% 0.upto(24) do |hour|%>
+            <option value="<%=hour%>" <%if @vote.open_time == hour%> selected="selected"<%end%>><%=hour%>시</option>
+          <%end%>
+        </select>
+        ~     
+        <select name ="close_time" style="width:70px;">
+          <% 0.upto(24) do |hour|%>
+            <option value="<%=hour%>"<%if @vote.close_time == hour%> selected="selected"<%end%>><%=hour%>시</option>
+          <%end%>
+        </select>
+        <input type="hidden" name="id" value="<%=@vote.id%>">
+        <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+        <input type="submit" value="투표 가능 시간 변경">
+      </form>
+
+			<hr>
+
+      <form method="post" action="/admin/change_detail">
+        <h4>사안 세부 설명</h4>
+        <textarea name="detail"><%=@vote.detail%></textarea>
+        <input type="hidden" name="id" value="<%=@vote.id%>">
+        <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+        <input type="submit" value="사안 세부 설명 변경">
+      </form>
+
+			<hr>
+		</div>
+		
+		<div class="eight columns" id="col1">
+      <% op_number = 1%>
+		  <% @vote.options.each do |op| %><!--옵션별 카드 생성-->
+
+        <!-- Project begins ================================================================= -->
+        <div class="project">
+        
+        <div class="projectTitle">
+          <h1>0<%= op_number %> \</h1><h3><%= op.name %></h3>
+        </div>
+          <%op_number = op_number + 1%>
+          <div class="projectThumbnail">
+            <svg class="thumbnailMask"></svg>
+
+            <div class="projectThumbnailHover">
+                <h4><%= op.name %></h4>
+                <h5>
+                  득표수는 투표 마감 후 공개됩니다.
+                </h5>
+            </div>
+            
+            <%if op.pictures.size != 0%>
+              <img src="/images/<%=op.pictures.first.saved_name%>" alt="<%= op.name %>" class="thumbnailImage" />
+            <% else %>
+             <%= image_tag 'about.jpg', :alt => "사진을 등록해주세요." %>
+            <%end%>  
+          </div>
+          
+  <!--
+          <ul class="portfolioSliderData">
+            <li data-src="images/projects/project_01_desaturated.jpg"></li>
+            <li data-src="images/projects/project_01_a.jpg"></li>
+            <li data-src="images/projects/project_01_b.jpg"></li>
+            <li data-src="images/projects/project_01_c.jpg"></li>
+            <li data-src="images/projects/project_01_d.jpg"></li>
+          </ul>
+  -->				
+
+          <div class="projectInfo">
+            <br>
+            <h5>
+               <strong>정후보 </strong><%= op.person_first %>&nbsp;&nbsp;-&nbsp;&nbsp;<strong>부후보 </strong><%= op.person_second %>
+            </h5>
+            <h2><%= op.name %></h2>
+
+  <!--
+            <div class="projectNavCounter"></div>
+            <div class="projectNav">
+            <div class="projectNavEnlarge"><button class="enlargeButton" onClick="window.location.href='projects/project_01/index.html'">투표하기</button></div>
+            <div class="projectNavButtons"><button class="prev">Prev</button> &mdash; <button class="next">Next</button></div>
+            </div>
+  -->
+
+            <ul>
+          <br>
+              <li>
+                <strong>대표 선본 이미지</strong><br><br>
+    <% op.pictures.each do |pic|%>
+          <img style = "height:284px; width:460px;" src="/images/<%=pic.saved_name%>"/>
+
+        <%= form_tag "/admin/image_change/#{pic.id}", multipart: true do %>
+          <input type="hidden" value="<%=pic.id%>" name="pic_id">
+          <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token">
+          <input type ="file" onchange="javascript:$('#submit_<%=pic.id%>').trigger('click');"name="file" style="display:none;"id="file_<%=pic.id%>">
+<a href="javascript:;"onclick="javascript:$('#file_<%=pic.id%>').trigger('click');">사진변경</a>
+          <input type = "submit" id="submit_<%=pic.id%>"style="display:none;">
+        <%end%>
+        <%= form_tag "/admin/image_delete", multipart: true do %>
+          <input type="hidden" value="<%=pic.id%>" name="id">
+          <input type="submit" id ="change_<%=pic.id%>" style="display:none;">
+          <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+          <a href ="javascript:;"onclick="javascript:$('#change_<%=pic.id%>').trigger('click');">사진삭제</a>
+        <%end%>
+            <br><hr style="color:white;"><br>
+    <%end%>
+            <br><br>
+                <h5>사진 추가(4개까지 가능. 용량이 20MB를 넘지 않도록 주의)</h5><br>
+      <%= form_tag "/admin/image_add/#{op.id}", multipart: true do %>
+      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token">
+      <input type ="file" onchange="javascript:$('#file_submit_<%=op.id%>').trigger('click');" style = "display:none;" id="inputFile_<%=op.id%>" name="file">
+      <a href="javascript:;" onclick="javascript:$('#inputFile_<%=op.id%>').trigger('click');">사진 추가</a>
+
+      <input type ="submit" style="display:none;" id="file_submit_<%=op.id%>">
+        <%end%>
+              </li>
+            <form action="/admin/content_upload/<%=op.id%>" method="post">
+              
+              <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token">
+              <li>
+              
+            <h5>
+               <strong>정후보 </strong>
+               <input type ="text" name="person_first"value="<%=op.person_first%>"><br>
+               <strong>부후보 </strong>
+               <input type = "text"name="person_second"value="<%=op.person_second%>">
+            </h5>
+              <strong>공약</strong><br><br>
+                <textarea name = "gong" style="width:98%; height:200px;" placeholder="공약을 입력해주세요"><%=op.self_content%></textarea>
+              </li>
+
+              <li>
+                <strong>징계 사항</strong><br><br>
+                <textarea name = "jing" placeholder="징계 사항을 입력해주세요" style= "width:98%; height:200px;"><%=op.public_content%></textarea>
+              </li>
+            </ul>
+
+            <input type ="submit" value="대표, 부대표, 공약, 징계사항 저장">
+</form>        
+</div><!-- projectinfo -->
+          
+        </div><!-- project -->
+        <!-- Project ends =================================================================== -->
+
+      <% end %><!--옵션별 카드 생성 종료-->
+        
+    </div><!-- col1 -->
+		
+		<!-- Even numbered projects are dynamically moved into this second column via JS -->
+		<div class="eight columns" id="col2">
+		</div>
+		<!-- Column 1 begins ==================================================================== -->
+	</div><!-- About page ends ======================================================================== -->
+	
+	<!-- Footer begins ========================================================================== -->
+	<footer class="sixteen columns">
+		<hr />
+		<ul id="footerLinks">
+			<li>&copy; 2013 votepeople All rights reserved.</li>
+			<li><a href="mailto:3votepeople@gmail.com">3votepeople@gmail.com</a></li>
+			<li><a href="#" target="_blank">vote.snu.ac.kr</a></li>
+		</ul>
+	</footer>
+	<!-- Footer ends ============================================================================ -->
+		
+</div><!-- container -->

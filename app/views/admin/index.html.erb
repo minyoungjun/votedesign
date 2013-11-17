@@ -1,0 +1,283 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+      <h1><strong>vote</strong>people<em> [:SNU]</em></h1>
+    </div>
+    <nav>
+      <ul>
+        <%if session[:admin_id] == 1%>
+          <li><a href="/admin/student_card_list"><button>학생증 인증자</button></a></li>
+        <%end%>
+        <li><a href="/admin/logout"><button>로그아웃</button></a></li>
+      </ul>
+    </nav>
+    <hr />
+  </header>
+
+  <div id="work">
+
+    <div id="overview" class="sixteen columns" style="text-align:center;">
+
+      <a id="aboutPage" style="text-decoration:none; cursor:pointer;">
+        <h3>+</h3>
+        <h4>사안 등록하기</h4><br>
+      </a>
+      <hr />
+        <% @votes.each do |vote| %>
+        <a href="/admin/view/<%= vote.id %>" style="text-decoration:none">
+          <h5>
+            <% pvv = vote.votestart %>
+            <% pvt = vote.votetimeout %>
+            <% ratio_result = vote.vote_rate%>
+            <% if pvv != [0, 0, 0] %>
+              투표 개시 <%=pvv[0]%>일 <%=pvv[1]%>시간 <%=pvv[2]%>분 전입니다
+              <br>
+            <% end %>
+        <% if pvt != [0, 0, 0] %>
+					이 투표는 <%=pvt[0]%>일<%=pvt[1]%>시간<%=pvt[2]%>분 후 마감됩니다.  /  현재 재학생 <%=ratio_result[0]%>명 중 <%= ratio_result[1] %>명 투표, 휴학생 <%=ratio_result[2]%>명 투표, 투표율 <%=ratio_result[3]%>%
+              마감까지 <%=pvt[0]%>일 <%=pvt[1]%>시간 <%=pvt[2]%>분 남았습니다
+            <% end %>
+            / 
+          </h5>
+          <h3><%= vote.content %></h3>
+          <h4><%= vote.admin.admin_name %></h4>
+       </a>
+        <br>
+
+        <hr />
+      <% end %>
+    </div><!-- overview -->
+  </div><!-- work -->
+
+  <div id="about">
+    <div id="overview" class="sixteen columns" style="text-align: center;">
+      <a id="workPage" style="text-decoration:none; cursor:pointer;">
+        <h3>=</h3>
+        <h4>목록으로 돌아가기</h4><br>
+        <hr />
+      </a>
+    </div>
+
+    <div class="ten columns offset-by-three" id="col1">
+
+        <script>
+        function votesubmit(){
+
+          if(document.form_1.content.value==""){
+            alert("투표사안을 입력해주세요.");
+            return false;
+          }
+
+          var s_d = document.form_1.start_date.value;
+          var d_d = document.form_1.due_date.value;
+          var s_y = parseInt(s_d.substring(0,4));
+          var d_y = parseInt(d_d.substring(0,4));
+          var s_m = parseInt(s_d.substring(5,7), 10);
+          var d_m = parseInt(d_d.substring(5,7), 10);
+          var s_day = parseInt(s_d.substring(8,10),10);
+          var d_day = parseInt(d_d.substring(8,10),10);
+          var noon_v = 2 ;
+          var s_cl = parseInt(document.form_1.start_clock.value);
+          var d_cl = parseInt(document.form_1.clock.value);
+          var s_min = parseInt(document.form_1.start_minute.value);
+          var d_min = parseInt(document.form_1.minute.value);
+          var re_al = false;
+
+          if(document.form_1.start_noon.value == "after" && document.form_1.noon.value == "before") {
+            noon_v = 3;
+          }
+
+          if(document.form_1.start_noon.value == document.form_1.noon.value){
+            noon_v = 1;
+          }
+
+          if ( s_y > d_y ){
+            re_al = true;
+          }
+          if ( s_y == d_y && s_m > d_m){
+            re_al = true;
+          }
+          if ( s_y == d_y && s_m == d_m && s_day > d_day){
+            re_al = true;
+          }
+          if (s_y == d_y && s_m == d_m && s_day == d_day && noon_v== 3){re_al = true;}
+          if (s_y == d_y && s_m == d_m && s_day == d_day && noon_v == 1 && s_cl > d_cl){re_al = true;}
+          if (s_y == d_y && s_m == d_m && s_day == d_day && noon_v ==1  && s_cl == d_cl && s_min > d_min){re_al = true;}
+
+          if (s_y == d_y && s_m == d_m && s_day == d_day && noon_v ==1 && s_cl == d_cl && s_min == d_min){ alert('시작시간과 마감시간이 같습니다.'); return false;}
+
+          if( re_al ) {
+            alert('시작시간이 마감시간보다 늦습니다.');
+            return false;
+          }
+
+          $('#submitbutton').trigger('click');
+        }
+
+        </script>
+
+        <form enctype="multipart/form-data"name="form_1" id="voteform" action="/admin/new_vote" method="POST">
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %>
+          <input type="text"  name="content" style="width:70%" placeholder="투표 사안"><br>
+          배경사진: <input type = "file" name = "picture" >
+          <div id="not_bool">
+            <script>
+              $(function(){
+                if($('#my_checkbox').is(':checked')){
+                  $("#not_bool").hide();
+                  $("#bool").show();
+                } else {
+                  $("#not_bool").show();
+                  $("#bool").hide();
+                }
+              });
+
+              $('#my_checkbox').click(function(){
+                if($(this).is(':checked')){
+                  $("#not_bool").hide();
+                  $("#bool").show();
+                } else {
+                  $("#not_bool").show();
+                  $("#bool").hide();
+                }
+              });
+            </script>
+            <input style = "width:70%;" type = "text" id= "formField" onkeypress="if(event.keyCode==13) {add_option(); return false;}" placeholder = "선택지 (순서대로 입력해주세요)"/>
+            <button onclick="add_option(); return false;">선택지 추가하기</button><br>
+            <div id="op_div">
+            </div>
+          </div><!-- not_bool -->
+
+          <br>
+          <h4>투표 시작 날짜(YYYY-MM-DD형식을 지켜주세요)</h4>
+          <input type = "date" value="<%=Time.now.to_s[0..9]%>" name = "start_date">
+          
+          <select name = "start_noon" style="width:70px;">
+            <option value = "before">오전</option>
+            <option value = "after">오후</option>
+          </select>
+
+          <select name = "start_clock" style = "width:70px;">
+            <% 0.upto(11) do |x|%>
+              <option value = "<% if x < 10 %>0<%=x%><%else%><%=x%><%end%>"><%=x%>시</option>
+            <%end%>
+          </select>
+     
+          <select name = "start_minute" style = "width:70px;">
+            <% 0.upto(59) do |y|%>
+              <option value = "<%if y < 10 %>0<%=y%><%else%><%=y%><%end%>"><%=y%>분</option>
+            <%end%>
+          </select><br>
+
+          <br>
+
+          <h4>투표 마감 날짜(YYYY-MM-DD형식을 지켜주세요.)</h4>
+          <input type = "date" value="<%=Time.now.to_s[0..9]%>" name = "due_date">
+          <select name = "noon" style = "width:70px;">
+            <option value = "before">오전</option>
+            <option value = "after">오후</option>
+          </select>
+
+          <select name = "clock" style = "width:70px;">
+            <% 0.upto(11) do |x|%>
+              <option value = "<% if x < 10 %>0<%=x%><%else%><%=x%><%end%>"><%=x%>시</option>
+            <%end%>
+          </select>
+        
+          <select name = "minute" style = "width:70px;">
+            <% 0.upto(59) do |y|%>
+              <option value = "<%if y < 10 %>0<%=y%><%else%><%=y%><%end%>"><%=y%>분</option>
+            <%end%>
+          </select>
+          
+          <br>
+          <h4>투표 가능 시간(24시간 기준)<h4>
+
+          <select name ="open_time" style="width:70px;">
+            <% 0.upto(24) do |hour|%>
+              <option value="<%=hour%>"><%=hour%>시</option>
+            <%end%>
+          </select>
+          ~
+        
+          <select name ="close_time" style="width:70px;">
+            <% 0.upto(24) do |hour|%>
+              <option value="<%=hour%>"><%=hour%>시</option>
+            <%end%>
+          </select>
+
+          <script>
+            var op_count = 1;
+            var em_count = 1;
+            $("form").keypress(function(e) {
+              //Enter key
+              if (e.which == 13) {
+                return false;
+              }
+            });
+
+            function add_option(){
+              var addd = $('#formField').val();
+
+              if( addd == '' || addd == null )
+              { 
+                alert('선택지가 빈칸입니다.');
+                return false;
+              }else {
+                $("#op_div").append('<h5># '+ op_count +'  &nbsp;&nbsp;<input type = "text" value = "' + $("#formField").val() + '" name = "[op][' + op_count + '"]></h5>');
+                op_count = op_count + 1;
+                document.getElementById('formField').value = "";
+                return false;
+              }           
+            }
+
+            function mail_add(){
+              var stremail = document.getElementById('email1').value;
+              var stremail2 = document.getElementById('email2').value;
+              var mmail = stremail + "@" + stremail2;
+              var t = escape(mmail);
+
+              if(t.match(/^(\w+)@(\w+)[.](\w+)$/ig) == null && t.match(/^(\w+)@(\w+)[.](\w+)[.](\w+)$/ig) == null){
+                alert("이메일을 올바르게 입력해 주세요.");
+              }else{
+                $("#em_div").append('<h5> 이메일 '+ em_count + ' : <input type = "text" value = "' + t + '" name = "[em][' + em_count + ']"></h5>');
+
+                em_count = em_count + 1;
+ 
+                document.getElementById('email1').value = "";
+                document.getElementById('email2').value = "";
+                $('input[id=email1]').focus();
+                return false;
+              }
+            }
+          </script>
+          
+          <br><br>
+          <h5>아래 이메일은 선본을 비롯한 선관위의 이메일로, 추후 개표 시 전원 이메일 인증을 해야 개표 할 수 있습니다.<br><br><strong>반드시 확인 가능한 이메일을 입력해 주시기 바랍니다.<strong></h5><br>
+          <input style = "width:120px;" type = "text" id ="email1" onkeypress="if(event.keyCode==13) {mail_add(); return false;}" placeholder = "아이디"/> @ <input style = "width:200px;" type = "text" id = "email2" onkeypress="if(event.keyCode==13) {mail_add(); return false;}" placeholder = "이메일주소">
+          <button onclick="mail_add(); return false;">이메일 추가하기</button><br>
+          <div id="em_div">
+          </div>
+
+          <div id="bool" style="display:none;">
+          </div>
+
+          <br><br>
+            
+          <div id="overview" style="text-align:center;">
+            <hr />
+            <input type="submit" style="display:none;" id="submitbutton">
+            <a onclick="votesubmit();" style="cursor:pointer; text-decoration:none;">
+              <h3>투표 등록하겠습니다</h3>
+            </a>
+            <hr />
+          </div>
+        </form>
+
+    </div>
+
+  </div><!-- about -->
+</div>
+      
+
+

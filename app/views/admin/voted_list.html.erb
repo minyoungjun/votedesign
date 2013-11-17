@@ -1,0 +1,88 @@
+<div class="container">
+
+	<!-- Header begins ========================================================================== -->
+	<header class="sixteen columns">
+		<div id="logo">
+			<h1><strong>vote</strong>people<em>.admin [:SNU]</em></h1>
+			<!--
+			<img src="images/logo.png" width="275" height="35" alt="Logo" />
+			-->
+		</div>
+    <nav>
+      <ul>
+        <li>
+          <a href="/admin/view/<%=@vote.id%>"><button>돌아가기</button></a>
+        </li>
+      </ul>
+    </nav>
+		<hr />
+	</header>
+	<!-- Header ends ============================================================================ -->
+	
+	<!-- Work page begins ======================================================================= -->
+	<div id="work" style="text-align:center;">
+
+    <div class="ten columns offset-by-three">
+      <%if @boolean_voted%>
+        <h4><%=@division%> 투표자 명단</h4><br>
+        <a href="/admin/voted_list/<%=@vote.id%>?division=<%=@division%>&voted=false">미투표자 명단 보기</a><br><br>
+      <%else%>
+        <h4><%=@division%> 미 투표자 명단</h4><br>
+        <a href="/admin/voted_list/<%=@vote.id%>?division=<%=@division%>&voted=true">투표자 명단 보기</a><br><br>
+      <%end%>
+          <table border="1">
+            <h5>
+              <tr>
+                <th>소속</th>
+                <th>전공</th>
+                <th>이름</th>
+                <th>학번</th>
+                <th>재학/휴학</th>
+                <th>투표여부</th>
+              </tr>
+
+              <% @paginated_electorates.each do |x| %>
+                <tr>
+                  <td><%= x.division %></td>
+                  <td><%= x.major %></td>
+                  <td><%= x.realname %></td>
+                  <td><%= x.student_number %></td>
+                  <td>
+                    <%if x.absent%>
+                      휴학
+                    <%else%>
+                      재학
+                    <%end%>
+                  </td>
+                  <td>
+                    <%if x.voted %>
+                      O
+                    <%else%>
+                      X
+                    <%end%>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+
+            <br><br>
+            <h5><%= will_paginate @paginated_electorates %></h5>
+          </div>
+	
+	</div>
+	<!-- Work page ends ========================================================================= -->
+	
+	<!-- About page begins ====================================================================== -->
+	
+	<!-- Footer begins ========================================================================== -->
+	<footer class="sixteen columns">
+		<hr />
+		<ul id="footerLinks">
+			<li>&copy; 2013 votepeople All rights reserved.</li>
+			<li><a href="mailto:3votepeople@gmail.com">3votepeople@gmail.com</a></li>
+			<li><a href="#" target="_blank">vote.snu.ac.kr</a></li>
+		</ul>
+	</footer>
+	<!-- Footer ends ============================================================================ -->
+		
+</div><!-- container -->

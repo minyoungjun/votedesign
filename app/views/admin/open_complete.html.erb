@@ -1,0 +1,67 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+                <%if @show == "show"%>
+                  <h4>개표 결과입니다.</h4>
+                  <div class="cbp-ntcontent">
+                    <% @options.each do |option|%>
+                      <%=option.name%>선본 : <%=option.counts.size%>표<br>
+                    <%end%>
+                  </div>
+                <%else%>
+                  <h4>틀린 암호가 있습니다. 다시 입력해주세요.</h4>
+                  <form method="post" action="/admin/open_complete">          
+                    <% @vote.attendants.each do |attendant|%>
+                      <%=attendant.email_address%>: 
+                        <input type="password" name="password_<%=attendant.id%>"><br>
+                      <%end%>
+
+                    <input type="hidden" name="vote_id" value="<%=@vote.id%>">
+                    <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    <input type="submit" value="암호를 모두 입력하였습니다.">
+                  </form>
+                <%end%>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>
+
+
+

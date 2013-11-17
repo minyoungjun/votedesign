@@ -1,0 +1,65 @@
+<div class="container">
+  <header class="sixteen columns">
+    <div id="logo">
+    	<h2>서울대학교 전자투표 서비스</h2>
+    	<br><br><br>
+    	<h1>votepeople <em>[:SNU]</em></h1>
+    </div>
+  </header>
+
+  <div id="work">
+    <div class="twelve columns offset-by-two">
+    
+    	<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+<!--     		<li class="cbp-ntopen"> -->
+    					
+    					<li class="cbp-ntopen">
+    						<h4>각자 메일함에서 메일을 확인해주시고, 메일에 적혀있는 링크를 클릭하셔서 본인만 알 수 있는 비밀번호를 설정하여 주십시오.</h4>
+    						<div class="cbp-ntcontent">
+                  <br>
+
+                  <form method="post" action="/admin/password_validation">
+                    <input type="hidden" name="open_boolean" value="false">
+                    <input type="hidden" name="id" value="<%=@vote.id%>">
+                    <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    <input type="submit" value="암호를 모두 생성하였습니다.">
+                  </form>
+
+                  <form method="post" action="/admin/mail_validation">
+                    <input type="hidden" name="open_boolean" value="false">
+                    <input type="hidden" name="id" value="<%=@vote.id%>">
+                    <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                    <input type="submit" value="메일 재전송">
+                  </form>
+                </div>
+    					</li>
+    				</ul>
+    			</div>
+    		</li>
+  </div><!-- work -->
+
+  
+</div><!-- continer -->
+
+<script>
+	$( function() {
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  if(!('placeholder' in document.createElement('input'))){
+    $('.placeholder').ezpz_hint();
+  }
+</script>
+<style type="text/css" media="all">
+  input.ezpz-hint {
+    color:#888;
+    line-height:19px;
+  }
+</style>
+
+
+

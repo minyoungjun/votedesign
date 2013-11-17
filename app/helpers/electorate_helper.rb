@@ -1,0 +1,2 @@
+module ElectorateHelper
+end
