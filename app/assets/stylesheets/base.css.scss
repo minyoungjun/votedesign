@@ -66,7 +66,7 @@ Contents
 ===================================================================================================*/
 	body {
 		background: #fff;
-		font: 14px/21px sans-serif;
+		font: 14px/21px 'Nanum Gothic', 'Malgun Gothic', sans-serif;
 		color: #444;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
@@ -178,7 +178,7 @@ Contents
 	  padding: 0.5em 1em 0.5em 1em;
 	  color: white;
 	  display: inline-block;
-	  font-family:  sans-serif;
+	  font-family:  'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	  font-size: 18px;
 	  text-decoration: none;
 	  cursor: pointer;
@@ -987,7 +987,7 @@ nav ul li:first-child {
 }
 
 nav ul li a, nav ul li a:visited, nav ul li button, nav ul li span {
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1023,7 +1023,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 #overview h3 {
-	font-family:  sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',   sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 36px;
@@ -1061,7 +1061,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectThumbnailHover h4 {
-	font-family:  sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',   sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 24px;
@@ -1075,7 +1075,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectThumbnailHover h5 {
-	font-family:  sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',   sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1093,7 +1093,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectInfo h4 {
-	font-family:  sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',   sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -1108,7 +1108,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectNav {
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -1139,7 +1139,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectNavClose button, .projectNavButtons button, .projectNavEnlarge button {
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -1216,7 +1216,7 @@ p strong, .projectInfo strong {
 }
 
 p, .projectInfo p, .projectInfo li {
-	font-family:  sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic', sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -1283,7 +1283,7 @@ footer {
 }
 
 footer p {
-	font-family:  sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1307,7 +1307,7 @@ footer p {
 	/*width: 200px;*/
 	/*height: 20px;*/
 	display: inline-block;
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -1325,7 +1325,7 @@ footer p {
 	border: none;
 	background: none;
 	padding-left: 5px;
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1400,7 +1400,7 @@ footer p {
 }
 
 #heroNav a {
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 16px;
@@ -1514,7 +1514,7 @@ code {
 
 .cbp-ntaccordion .cbp-ntcontent ul.square li {
 	list-style: square;
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 }
 
 .cbp-ntsubaccordion {
@@ -1538,7 +1538,7 @@ code {
 	padding: 1em 0 0.5em;
 	border-bottom: 1px solid #ddd;
 	font-size: 2.2em;
-	font-family: sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 /* 	letter-spacing: 0.03em; */
 	color: #47a3da;
 /* 	font-weight: 300; */
@@ -1571,7 +1571,7 @@ code {
 }
 
 .cbp-ntaccordion .cbp-ntcontent p strong {
-	font-family:  sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-style: normal;
 	font-weight: normal;
 }
