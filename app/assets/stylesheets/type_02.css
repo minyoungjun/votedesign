@@ -51,7 +51,7 @@ Contents
 }
 
 #logo h2, #logoDetailView h2 {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 17px;
@@ -64,7 +64,7 @@ Contents
 }
 
 #logo h3 {
-	font-family:  sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  sans-serif;
 	font-weight: normal;
 	font-style: normal;
 	font-size: 16px;
@@ -72,7 +72,7 @@ Contents
 }
 
 nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -84,7 +84,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 #overview h3 {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  Helvetica, Arial, sans-serif;
 	font-weight: normal;
   font-style: normal;
 	font-size: 40px;
@@ -105,7 +105,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 #indexList h3 {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
   font-style: normal;
 	font-size: 56px;
@@ -124,7 +124,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 
 
 .projectThumbnailHover h4 {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 35px;
@@ -136,7 +136,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 .projectThumbnailHover h5 {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -166,7 +166,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 
 
 .projectNavCounter {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -178,7 +178,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 .projectNavButtons button {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family:'Nanum Gothic', 'Malgun Gothic',   Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -190,7 +190,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 .projectNavClose button, .projectNavEnlarge button {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -202,7 +202,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 p, li, .projectInfo p, .projectInfo li {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -214,7 +214,7 @@ p, li, .projectInfo p, .projectInfo li {
 }
 
 footer p {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -226,7 +226,7 @@ footer p {
 }
 
 blockquote, blockquote p {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
   font-style: normal;
 	font-size: 14px;
@@ -238,7 +238,7 @@ blockquote, blockquote p {
 }
 
 blockquote cite {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -250,13 +250,13 @@ blockquote cite {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  Helvetica, Arial, sans-serif;
 /* 	letter-spacing: -0.05em; */
 	text-transform: none;
 }
 
 #heroNav a {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 16px;
@@ -268,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #formField {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic', Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -280,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #formSubmit {
-	font-family:  Helvetica, Arial, sans-serif;
+	font-family: 'Nanum Gothic', 'Malgun Gothic',  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
