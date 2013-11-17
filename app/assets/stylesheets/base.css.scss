@@ -66,7 +66,7 @@ Contents
 ===================================================================================================*/
 	body {
 		background: #fff;
-		font: 14px/21px 'NanumBarunGothic', sans-serif;
+		font: 14px/21px sans-serif;
 		color: #444;
 		-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 		-webkit-text-size-adjust: 100%;
@@ -84,7 +84,7 @@ Contents
 ===================================================================================================*/
 	h1, h2, h3, h4, h5, h6 {
 		color: #222;
-		font-family: /*'NanumBarunGothic',*/ sans-serif;
+		font-family:  sans-serif;
 		font-weight: normal; }
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
 	h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}
@@ -103,9 +103,9 @@ Contents
 	strong { font-weight: bold; color: #333; }
 	small { font-size: 80%; }
 
-	blockquote, blockquote p { font-family: /*'NanumBarunGothic',*/ sans-serif; font-size: 14px; line-height: 1.5; font-style: normal; }
+	blockquote, blockquote p { font-family: sans-serif; font-size: 14px; line-height: 1.5; font-style: normal; }
 	blockquote { margin: 0 0 20px; padding: 9px 20px 0 19px; }
-	blockquote cite { font-family: /*'NanumBarunGothic',*/sans-serif; font-style: normal; font-weight: bold; display: block; padding-top: 8px; }
+	blockquote cite { font-family: sans-serif; font-style: normal; font-weight: bold; display: block; padding-top: 8px; }
 	blockquote cite:before { content: "\2014"; }
 	/*blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }*/
 
@@ -178,7 +178,7 @@ Contents
 	  padding: 0.5em 1em 0.5em 1em;
 	  color: white;
 	  display: inline-block;
-	  font-family: /*'NanumGothic',*/ sans-serif;
+	  font-family:  sans-serif;
 	  font-size: 18px;
 	  text-decoration: none;
 	  cursor: pointer;
@@ -271,7 +271,7 @@ Contents
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
 		border-radius: 2px;
-		font: 13px 'NanumBarunGothic', sans-serif;
+		font: 13px sans-serif;
 		color: #444;
 		margin: 0;
 		width: 210px;
@@ -987,7 +987,7 @@ nav ul li:first-child {
 }
 
 nav ul li a, nav ul li a:visited, nav ul li button, nav ul li span {
-	font-family: /*'NanumBarunGothic',*/ sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1023,7 +1023,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 #overview h3 {
-	font-family: /*'NanumBarunGothic',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 36px;
@@ -1061,7 +1061,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectThumbnailHover h4 {
-	font-family: /*'NanumBarunGothicBold',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 24px;
@@ -1075,7 +1075,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectThumbnailHover h5 {
-	font-family: /*'NanumBarunGothic',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1093,7 +1093,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectInfo h4 {
-	font-family: /*'NanumBarunGothicBold',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -1108,7 +1108,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectNav {
-	font-family:/* 'NanumBarunGothicBold',*/ sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -1125,7 +1125,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectNavCounter {
-	font-family:/* 'NanumBarunGothicBold',*/ sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1139,7 +1139,7 @@ nav ul li button:hover, nav ul li button:active, nav ul li button:focus, nav ul 
 }
 
 .projectNavClose button, .projectNavButtons button, .projectNavEnlarge button {
-	font-family:/* 'NanumBarunGothicBold',*/ sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -1216,7 +1216,7 @@ p strong, .projectInfo strong {
 }
 
 p, .projectInfo p, .projectInfo li {
-	font-family: /*'NanumBarunGothic',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -1283,7 +1283,7 @@ footer {
 }
 
 footer p {
-	font-family: /*'NanumBarunGothic',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1307,7 +1307,7 @@ footer p {
 	/*width: 200px;*/
 	/*height: 20px;*/
 	display: inline-block;
-	font-family:/* 'NanumBarunGothic',*/ sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -1325,7 +1325,7 @@ footer p {
 	border: none;
 	background: none;
 	padding-left: 5px;
-	font-family:/* 'NanumBarunGothicBold',*/ sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -1400,7 +1400,7 @@ footer p {
 }
 
 #heroNav a {
-	font-family:/* 'NanumBarunGothic', */sans-serif;
+	font-family: sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 16px;
@@ -1514,7 +1514,7 @@ code {
 
 .cbp-ntaccordion .cbp-ntcontent ul.square li {
 	list-style: square;
-	font-family:/* 'NanumBarunGothicBold'*/sans-serif;
+	font-family: sans-serif;
 }
 
 .cbp-ntsubaccordion {
@@ -1538,7 +1538,7 @@ code {
 	padding: 1em 0 0.5em;
 	border-bottom: 1px solid #ddd;
 	font-size: 2.2em;
-	font-family:/* 'NanumBarunGothic'*/sans-serif;
+	font-family: sans-serif;
 /* 	letter-spacing: 0.03em; */
 	color: #47a3da;
 /* 	font-weight: 300; */
@@ -1571,7 +1571,7 @@ code {
 }
 
 .cbp-ntaccordion .cbp-ntcontent p strong {
-	font-family:/* 'NanumBarunGothicBold',*/ sans-serif;
+	font-family:  sans-serif;
 	font-style: normal;
 	font-weight: normal;
 }

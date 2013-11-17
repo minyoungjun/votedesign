@@ -19,30 +19,6 @@ Contents
 /*===================================================================================================
 1) @font-face definitions
 ===================================================================================================*/
-/*@import url(//fonts.googleapis.com/css?family=Advent+Pro:100);
-@import url(//fonts.googleapis.com/css?family=Lato:300,400);*/
-/*
-@font-face {
-  font-family: 'NanumBarunGothic';
-  font-style: normal;
-  font-weight: 700;
-  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot);
-  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
-       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff2) format('woff2'),
-       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff) format('woff'),
-       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf) format('truetype');
-}*/
-/*
-@font-face {
-  font-family: 'NanumBarunGothicBold';
-  font-style: normal;
-  font-weight: 800;
-  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.eot);
-  src: url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.eot?#iefix) format('embedded-opentype'),
-       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.woff2) format('woff2'),
-       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.woff) format('woff'),
-       url(//themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-ExtraBold.ttf) format('truetype');
-}*/
 /*===================================================================================================
 2) Styles
 ===================================================================================================*/
@@ -75,7 +51,7 @@ Contents
 }
 
 #logo h2, #logoDetailView h2 {
-	font-family: /*'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 17px;
@@ -88,7 +64,7 @@ Contents
 }
 
 #logo h3 {
-	font-family: /*'NanumBarunGothic',*/ sans-serif;
+	font-family:  sans-serif;
 	font-weight: normal;
 	font-style: normal;
 	font-size: 16px;
@@ -96,7 +72,7 @@ Contents
 }
 
 nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
-	font-family: /*'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -108,7 +84,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 #overview h3 {
-	font-family: /*'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 	font-weight: normal;
   font-style: normal;
 	font-size: 40px;
@@ -129,7 +105,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 #indexList h3 {
-	font-family: /*'NanumBarunGothic', */Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
   font-style: normal;
 	font-size: 56px;
@@ -148,7 +124,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 
 
 .projectThumbnailHover h4 {
-	font-family: /*'NanumBarunGothicBold', */Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 35px;
@@ -160,7 +136,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 .projectThumbnailHover h5 {
-	font-family: /*'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -190,7 +166,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 
 
 .projectNavCounter {
-	font-family:/* 'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -202,7 +178,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 .projectNavButtons button {
-	font-family: /*'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -214,7 +190,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 .projectNavClose button, .projectNavEnlarge button {
-	font-family:/* 'NanumBarunGothicBold', */Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 11px;
@@ -226,7 +202,7 @@ nav ul li a, nav ul li button, nav ul li span, #detailViewBack a {
 }
 
 p, li, .projectInfo p, .projectInfo li {
-	font-family:/* 'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -238,7 +214,7 @@ p, li, .projectInfo p, .projectInfo li {
 }
 
 footer p {
-	font-family:/* 'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -250,7 +226,7 @@ footer p {
 }
 
 blockquote, blockquote p {
-	font-family:/* 'NanumBarunGothic', */Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
   font-style: normal;
 	font-size: 14px;
@@ -262,7 +238,7 @@ blockquote, blockquote p {
 }
 
 blockquote cite {
-	font-family: /*'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -274,13 +250,13 @@ blockquote cite {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: /*'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 /* 	letter-spacing: -0.05em; */
 	text-transform: none;
 }
 
 #heroNav a {
-	font-family:/* 'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 16px;
@@ -292,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #formField {
-	font-family:/* 'NanumBarunGothic',*/ Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 14px;
@@ -304,7 +280,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #formSubmit {
-	font-family: /*'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+	font-family:  Helvetica, Arial, sans-serif;
 	font-weight: normal;
     font-style: normal;
 	font-size: 12px;
@@ -327,7 +303,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .projectTitle h3 {
-  font-family: /*'NanumBarunGothicBold',*/ Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   font-size: 21px;
